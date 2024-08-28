@@ -1,0 +1,47 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "eslint.validate": ["typescript"],
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
+
+  "editor.fontSize": 12,
+
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#042A2B",
+    "titleBar.inactiveBackground": "#042A2B",
+    "titleBar.activeForeground": "#ffffff",
+    "titleBar.border": "#0c5456",
+    "statusBar.background": "#042A2B",
+    "statusBar.foreground": "#ffffff",
+    "statusBar.border": "#0c5456",
+    "tab.hoverBackground": "#2e54553b",
+    "tab.activeForeground": "#ffffff",
+    "tab.activeBorderTop": "#fff",
+    "tab.hoverForeground": "#ffffff",
+    "tab.unfocusedHoverBorder": "#ffffff",
+    "toolbar.hoverOutline": "#042",
+    "toolbar.activeBackground": "#0c5456",
+    "toolbar.hoverBackground": "#2e54553b",
+    "sideBar.border": "#042a2b",
+    "sideBar.dropBackground": "#042A2B",
+    "sideBarActivityBarTop.border": "#042a2b",
+    "sideBarTitle.background": "#042a2b40",
+    "sideBarSectionHeader.border": "#042a2b",
+    "panelTitle.activeBorder": "#ffffff",
+    "panel.border": "#042a2b",
+    "panelTitle.activeForeground": "#ffff",
+    "panelTitle.inactiveForeground": "#aeaeae",
+    "scrollbar.shadow": "#042a2b",
+    "editorLineNumber.activeForeground": "#ffffff",
+    "sideBar.foreground": "#ffffff",
+    "sideBarTitle.foreground": "#878787",
+    "input.background": "#1D262F",
+    "input.border": "#042a2b",
+    "badge.background": "#8a3232"
+  },
+
+  "cSpell.words": ["typeorm"]
+}
