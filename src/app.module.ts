@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { config } from './config/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
+import { SectionsModule } from './modules/public/sections/sections.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { join } from 'path';
         synchronize: true,
       }),
     }),
+    SectionsModule,
   ],
 })
 export class AppModule {}
