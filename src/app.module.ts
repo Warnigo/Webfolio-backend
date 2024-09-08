@@ -3,13 +3,15 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { config } from './config/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
-import { SectionsModule } from './modules/public/sections/sections.module';
+import { HomeModule } from './api/home/home.module';
+import { AboutModule } from './api/about/about.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       load: [config],
+      envFilePath: '.env',
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -25,7 +27,8 @@ import { SectionsModule } from './modules/public/sections/sections.module';
         synchronize: true,
       }),
     }),
-    SectionsModule,
+    HomeModule,
+    AboutModule,
   ],
 })
 export class AppModule {}
