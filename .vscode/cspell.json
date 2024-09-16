@@ -1,73 +1,130 @@
 {
   "version": "0.2",
   "language": "en",
-  "words": ["githubusercontent", "Warfurious", "Warnigo", "webfolio"],
-  "flagWords": ["hte"],
+  "words": [
+    "decarators",
+    "githubusercontent",
+    "trivago",
+    "Warfurious",
+    "Warnigo",
+    "webfolio"
+  ],
+  "flagWords": [
+    "hte"
+  ],
   "languageSettings": [
     {
       "languageId": "*",
       "locale": "en",
-      "dictionaries": ["wordsEn"]
+      "dictionaries": [
+        "wordsEn"
+      ]
     },
     {
       "languageId": "*",
       "locale": "uz",
-      "dictionaries": ["wordsEn", "wordsUz"]
+      "dictionaries": [
+        "wordsEn",
+        "wordsUz"
+      ]
     },
     {
       "languageId": "*",
       "locale": "ru",
-      "dictionaries": ["wordsEnGb", "wordsRu"]
+      "dictionaries": [
+        "wordsEnGb",
+        "wordsRu"
+      ]
     },
     {
       "languageId": "*",
-      "dictionaries": ["companies", "softwareTerms", "misc"]
+      "dictionaries": [
+        "companies",
+        "softwareTerms",
+        "misc"
+      ]
     },
     {
       "languageId": "python",
       "allowCompoundWords": true,
-      "dictionaries": ["python"]
+      "dictionaries": [
+        "python"
+      ]
     },
     {
       "languageId": "go",
       "allowCompoundWords": true,
-      "dictionaries": ["go"]
+      "dictionaries": [
+        "go"
+      ]
     },
     {
       "languageId": "javascript",
-      "dictionaries": ["typescript", "node"]
+      "dictionaries": [
+        "typescript",
+        "node"
+      ]
     },
     {
       "languageId": "javascriptreact",
-      "dictionaries": ["typescript", "node"]
+      "dictionaries": [
+        "typescript",
+        "node"
+      ]
     },
     {
       "languageId": "typescript",
-      "dictionaries": ["typescript", "node"]
+      "dictionaries": [
+        "typescript",
+        "node"
+      ]
     },
     {
       "languageId": "typescriptreact",
-      "dictionaries": ["typescript", "node"]
+      "dictionaries": [
+        "typescript",
+        "node"
+      ]
     },
     {
       "languageId": "html",
-      "dictionaries": ["html", "fonts", "typescript", "css"]
+      "dictionaries": [
+        "html",
+        "fonts",
+        "typescript",
+        "css"
+      ]
     },
     {
       "languageId": "php",
-      "dictionaries": ["php", "html", "fonts", "css", "typescript"]
+      "dictionaries": [
+        "php",
+        "html",
+        "fonts",
+        "css",
+        "typescript"
+      ]
     },
     {
       "languageId": "css",
-      "dictionaries": ["fonts", "css"]
+      "dictionaries": [
+        "fonts",
+        "css"
+      ]
     },
     {
       "languageId": "less",
-      "dictionaries": ["fonts", "css"]
+      "dictionaries": [
+        "fonts",
+        "css"
+      ]
     },
     {
       "languageId": "scss",
-      "dictionaries": ["fonts", "css"]
+      "dictionaries": [
+        "fonts",
+        "css"
+      ]
     }
   ]
 }

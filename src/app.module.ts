@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { config } from './config/config';
+import { config } from '@/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
-import { HomeModule } from './api/home/home.module';
-import { AboutModule } from './api/about/about.module';
+import { WorkTogetherModule } from '@/api/work-together';
 
 @Module({
   imports: [
@@ -24,11 +23,10 @@ import { AboutModule } from './api/about/about.module';
         password: configService.get('POSTGRES_PASSWORD'),
         database: configService.get('POSTGRES_DATABASE'),
         entities: [join(process.cwd(), 'dist/**/*.entity.js')],
-        synchronize: true,
+        synchronize: false,
       }),
     }),
-    HomeModule,
-    AboutModule,
+    WorkTogetherModule,
   ],
 })
 export class AppModule {}
