@@ -23,8 +23,6 @@ import { join } from 'path'
         password: configService.get('POSTGRES_PASSWORD'),
         database: configService.get('POSTGRES_DATABASE'),
         entities: [join(process.cwd(), 'dist/**/*.entity.js')],
-        migrations: [join(__dirname, '../migrations/*{.ts,.js}')],
-        migrationsRun: true,
         synchronize: false,
       }),
     }),

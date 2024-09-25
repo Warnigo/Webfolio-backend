@@ -1,4 +1,4 @@
-import { ROUTES } from '@/constants'
+import { API_TAGS, ROUTES } from '@/constants'
 import { ApiResponseInterceptor } from '@/interceptors'
 import { ApiResponse } from '@/types'
 import { handleHttpError } from '@/utils/error-handler'
@@ -14,17 +14,24 @@ import {
   Put,
   UseInterceptors,
 } from '@nestjs/common'
+import { ApiTags, ApiResponse as SwaggerApiResponse } from '@nestjs/swagger'
 
+import { WORK_TOGETHER_MESSAGES } from './constants'
 import { CreateWorkTogetherDto } from './dto'
 import { WorkTogether } from './entity'
 import { WorkTogetherService } from './work-together.service'
 
+@ApiTags(API_TAGS.workTogether)
 @Controller(ROUTES.workTogether)
 @UseInterceptors(ApiResponseInterceptor)
 export class WorkTogetherController {
   constructor(private readonly workTogetherService: WorkTogetherService) {}
 
   @Get()
+  @SwaggerApiResponse({
+    status: 200,
+    description: WORK_TOGETHER_MESSAGES.WORK_TOGETHER_REQUESTS_RETRIEVED,
+  })
   async find(): Promise<ApiResponse<WorkTogether[]>> {
     try {
       const data = await this.workTogetherService.findAll()
@@ -39,6 +46,10 @@ export class WorkTogetherController {
   }
 
   @Post('add')
+  @SwaggerApiResponse({
+    status: 201,
+    description: WORK_TOGETHER_MESSAGES.WORK_TOGETHER_REQUEST_CREATED,
+  })
   async create(
     @Body() createWorkTogetherDto: CreateWorkTogetherDto,
   ): Promise<ApiResponse<WorkTogether>> {
@@ -59,6 +70,10 @@ export class WorkTogetherController {
   }
 
   @Put(':id/done')
+  @SwaggerApiResponse({
+    status: 200,
+    description: WORK_TOGETHER_MESSAGES.WORK_TOGETHER_REQUEST_MARKED_DONE,
+  })
   async markAsDone(
     @Param('id') id: string,
   ): Promise<ApiResponse<WorkTogether>> {
@@ -85,6 +100,10 @@ export class WorkTogetherController {
   }
 
   @Delete(':id')
+  @SwaggerApiResponse({
+    status: 200,
+    description: WORK_TOGETHER_MESSAGES.WORK_TOGETHER_REQUEST_DELETED,
+  })
   async deleteById(@Param('id') id: string): Promise<ApiResponse<null>> {
     try {
       await this.workTogetherService.deleteById(+id)
@@ -105,6 +124,10 @@ export class WorkTogetherController {
   }
 
   @Delete()
+  @SwaggerApiResponse({
+    status: 200,
+    description: WORK_TOGETHER_MESSAGES.WORK_TOGETHER_REQUESTS_DELETED,
+  })
   async deleteAll(): Promise<ApiResponse<null>> {
     try {
       await this.workTogetherService.deleteAll()
