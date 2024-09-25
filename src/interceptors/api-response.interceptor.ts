@@ -1,12 +1,12 @@
+import { ApiResponse } from '@/types'
 import {
+  CallHandler,
+  ExecutionContext,
   Injectable,
   NestInterceptor,
-  ExecutionContext,
-  CallHandler,
-} from '@nestjs/common';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { ApiResponse } from '@/types';
+} from '@nestjs/common'
+import { Observable } from 'rxjs'
+import { map } from 'rxjs/operators'
 
 @Injectable()
 export class ApiResponseInterceptor<T>
@@ -17,11 +17,11 @@ export class ApiResponseInterceptor<T>
     next: CallHandler,
   ): Observable<ApiResponse<T>> {
     return next.handle().pipe(
-      map((data) => ({
-        success: true,
-        messages: [],
-        data,
+      map((response: ApiResponse<T>) => ({
+        success: response.success,
+        messages: response.messages || [],
+        data: response.data,
       })),
-    );
+    )
   }
 }

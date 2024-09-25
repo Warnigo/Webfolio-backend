@@ -1,1 +1,1 @@
-export { WorkTogetherModule } from './work-together.module';
+export { WorkTogetherModule } from './work-together.module'

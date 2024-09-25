@@ -1,9 +1,9 @@
-import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { config } from '@/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { join } from 'path';
-import { WorkTogetherModule } from '@/api/work-together';
+import { WorkTogetherModule } from '@/api/work-together'
+import { config } from '@/config'
+import { Module } from '@nestjs/common'
+import { ConfigModule, ConfigService } from '@nestjs/config'
+import { TypeOrmModule } from '@nestjs/typeorm'
+import { join } from 'path'
 
 @Module({
   imports: [
@@ -23,6 +23,8 @@ import { WorkTogetherModule } from '@/api/work-together';
         password: configService.get('POSTGRES_PASSWORD'),
         database: configService.get('POSTGRES_DATABASE'),
         entities: [join(process.cwd(), 'dist/**/*.entity.js')],
+        migrations: [join(__dirname, '../migrations/*{.ts,.js}')],
+        migrationsRun: true,
         synchronize: false,
       }),
     }),

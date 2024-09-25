@@ -1,23 +1,23 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator'
 
 export class CreateWorkTogetherDto {
   @IsNotEmpty()
   @IsString()
-  company: string;
+  company: string
 
   @IsNotEmpty()
   @IsString()
-  email: string;
+  email: string
 
   @IsNotEmpty()
   @IsString()
-  phone: string;
+  phone: string
 
   @IsNotEmpty()
   @IsString()
-  budget: string;
+  budget: string
 
   @IsNotEmpty()
   @IsString()
-  message: string;
+  message: string
 }

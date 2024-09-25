@@ -1,1 +1,1 @@
-export { ApiResponseInterceptor } from './api-response.interceptor';
+export { ApiResponseInterceptor } from './api-response.interceptor'

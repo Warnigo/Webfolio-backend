@@ -1,33 +1,33 @@
 import {
-  Entity,
-  PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-} from 'typeorm';
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm'
 
 @Entity()
 export class WorkTogether {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: number
 
   @Column()
-  company: string;
+  company: string
 
   @Column()
-  email: string;
+  email: string
 
   @Column()
-  phone: string;
+  phone: string
 
   @Column()
-  budget: string;
+  budget: string
 
   @Column()
-  message: string;
+  message: string
 
   @Column({ default: false })
-  isDone: boolean;
+  isDone: boolean
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt: Date
 }

@@ -1,1 +1,1 @@
-export { CreateWorkTogetherDto } from './work-together.dto';
+export { CreateWorkTogetherDto } from './work-together.dto'

@@ -1,71 +1,60 @@
+import { ROUTES } from '@/constants'
+import { ApiResponseInterceptor } from '@/interceptors'
+import { ApiResponse } from '@/types'
+import { handleHttpError } from '@/utils/error-handler'
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Param,
-  Put,
-  UseInterceptors,
-  HttpException,
+  Controller,
+  Delete,
+  Get,
   HttpStatus,
   NotFoundException,
-} from '@nestjs/common';
-import { WorkTogetherService } from './work-together.service';
-import { ApiResponseInterceptor } from '@/interceptors';
-import { CreateWorkTogetherDto } from './dto';
-import { WorkTogether } from './entity';
-import { ApiResponse } from '@/types';
-import { ROUTES } from '@/constants';
+  Param,
+  Post,
+  Put,
+  UseInterceptors,
+} from '@nestjs/common'
+
+import { CreateWorkTogetherDto } from './dto'
+import { WorkTogether } from './entity'
+import { WorkTogetherService } from './work-together.service'
 
 @Controller(ROUTES.workTogether)
 @UseInterceptors(ApiResponseInterceptor)
 export class WorkTogetherController {
   constructor(private readonly workTogetherService: WorkTogetherService) {}
 
+  @Get()
+  async find(): Promise<ApiResponse<WorkTogether[]>> {
+    try {
+      const data = await this.workTogetherService.findAll()
+      return {
+        success: true,
+        messages: ['Work together requests retrieved successfully'],
+        data,
+      }
+    } catch (error) {
+      throw handleHttpError(error, 'Failed to retrieve work together requests')
+    }
+  }
+
   @Post('add')
   async create(
     @Body() createWorkTogetherDto: CreateWorkTogetherDto,
   ): Promise<ApiResponse<WorkTogether>> {
     try {
-      const data = await this.workTogetherService.create(createWorkTogetherDto);
+      const data = await this.workTogetherService.create(createWorkTogetherDto)
       return {
         success: true,
         messages: ['Work together request created successfully'],
         data,
-      };
+      }
     } catch (error) {
-      throw new HttpException(
-        {
-          success: false,
-          messages: ['Failed to create work together request'],
-          error: { statusCode: HttpStatus.BAD_REQUEST, message: error.message },
-        },
+      throw handleHttpError(
+        error,
+        'Failed to create work together request',
         HttpStatus.BAD_REQUEST,
-      );
-    }
-  }
-
-  @Get()
-  async findAll(): Promise<ApiResponse<WorkTogether[]>> {
-    try {
-      const data = await this.workTogetherService.findAll();
-      return {
-        success: true,
-        messages: ['Work together requests retrieved successfully'],
-        data,
-      };
-    } catch (error) {
-      throw new HttpException(
-        {
-          success: false,
-          messages: ['Failed to retrieve work together requests'],
-          error: {
-            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-            message: error.message,
-          },
-        },
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+      )
     }
   }
 
@@ -74,34 +63,60 @@ export class WorkTogetherController {
     @Param('id') id: string,
   ): Promise<ApiResponse<WorkTogether>> {
     try {
-      const data = await this.workTogetherService.markAsDone(+id);
+      const data = await this.workTogetherService.markAsDone(+id)
       return {
         success: true,
         messages: ['Work together request marked as done successfully'],
         data,
-      };
+      }
     } catch (error) {
       if (error instanceof NotFoundException) {
-        throw new HttpException(
-          {
-            success: false,
-            messages: ['Work together request not found'],
-            error: { statusCode: HttpStatus.NOT_FOUND, message: error.message },
-          },
+        throw handleHttpError(
+          error,
+          'Work together request not found',
           HttpStatus.NOT_FOUND,
-        );
+        )
       }
-      throw new HttpException(
-        {
-          success: false,
-          messages: ['Failed to mark work together request as done'],
-          error: {
-            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-            message: error.message,
-          },
-        },
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+      throw handleHttpError(
+        error,
+        'Failed to mark work together request as done',
+      )
+    }
+  }
+
+  @Delete(':id')
+  async deleteById(@Param('id') id: string): Promise<ApiResponse<null>> {
+    try {
+      await this.workTogetherService.deleteById(+id)
+      return {
+        success: true,
+        messages: ['Work together request deleted successfully'],
+      }
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw handleHttpError(
+          error,
+          `Work together request with ID ${id} not found`,
+          HttpStatus.NOT_FOUND,
+        )
+      }
+      throw handleHttpError(error, 'Failed to delete work together request')
+    }
+  }
+
+  @Delete()
+  async deleteAll(): Promise<ApiResponse<null>> {
+    try {
+      await this.workTogetherService.deleteAll()
+      return {
+        success: true,
+        messages: ['All work together requests deleted successfully'],
+      }
+    } catch (error) {
+      throw handleHttpError(
+        error,
+        'Failed to delete all work together requests',
+      )
     }
   }
 }
